@@ -1,33 +1,38 @@
+# toon_rails
 
-# ToonParserRails
+Add TOON format support to Ruby on Rails via middleware.
 
-TOON Parser Rails gem converts TOON → JSON (request) and JSON → TOON (response).
+## Why?
 
-## Installation
+TOON minimizes payload size by:
+- defining schema once
+- removing repetitive keys
+- using row‑based data
 
-Add to Gemfile
+Rails internally continues using JSON.
 
-gem 'toon_parser_rails'
+## Supported Content Types
+
+- application/toon+plain
+- application/json
+
+## Input (TOON)
+
+reviews {
+  id, rating
+}:
+201, 5
+
+## Output (JSON)
+
+{
+  "reviews": [{ "id": "201", "rating": "5" }]
+}
 
 ## Configuration
 
-ToonParserRails.configure do |config|
-  config.response_format = :toon
+ToonRails.configure do |config|
+  config.enable_request_parsing = true
+  config.enable_response_rendering = true
 end
-
-## Flow
-
-TOON Request → Rails Controller → JSON Response → TOON Response
-
-## Content-Type
-
-application/toon
-
-## Example
-
-reviews [2] {
-id, customer
-}:
-
-201, Ram
-202, Sita
+``
