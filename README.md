@@ -13,7 +13,7 @@ Rails internally continues using JSON.
 
 ## Supported Content Types
 
-- application/toon+plain
+- application/toon
 - application/json
 
 ## Input (TOON)
@@ -31,7 +31,7 @@ reviews {
 
 ## Configuration
 
-ToonRails.configure do |config|
+ToonParserRails.configure do |config|
   config.enable_request_parsing = true
   config.enable_response_rendering = true
 end
